@@ -1,16 +1,6 @@
-from builtins import print
-from numpy.core.numeric import NaN
 import torch
-from torch._C import get_num_interop_threads
 import torch.nn as nn
-import torch.nn.functional as F
 import pyro
-import scipy.sparse as sp
-import numpy as np
-import math
-from sklearn import preprocessing
-import time
-
 
 class VGAE(nn.Module):
     """ GAE/VGAE as edge prediction model """
@@ -73,8 +63,6 @@ class GCNLayer(nn.Module):
             x = self.activation(x)
         return x
 
-
-from sklearn.metrics.pairwise import cosine_similarity
 def sample_adj(adj_logits):
     """ sample an adj from the predicted edge probabilities of ep_net """
     relu = torch.nn.ReLU()

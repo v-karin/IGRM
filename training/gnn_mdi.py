@@ -1,3 +1,4 @@
+import time
 import numpy as np
 import torch
 import torch.nn.functional as F
@@ -43,6 +44,7 @@ def train_gnn_mdi(data, args, log_path, device=torch.device('cpu')):
     scheduler, opt = build_optimizer(args, trainable_parameters)
 
     # train
+    times = []
     Train_loss = []
     Test_rmse = []
     Test_l1 = []
@@ -115,6 +117,7 @@ def train_gnn_mdi(data, args, log_path, device=torch.device('cpu')):
     num_ob = data.x.shape[0]-data.x.shape[1]
     obob_edge_weight = None
 
+    ot = time.time()
     reconstrct_frequency = 100
     for epoch in range(args.epochs):
         model.train()
@@ -186,16 +189,21 @@ def train_gnn_mdi(data, args, log_path, device=torch.device('cpu')):
             else:
                 pred_test = pred[:int(test_edge_attr.shape[0] / 2),0]
                 label_test = test_labels
+
+            t1 = time.time() - ot
             mse = F.mse_loss(pred_test, label_test)
             test_rmse = np.sqrt(mse.item())
             l1 = F.l1_loss(pred_test, label_test)
             test_l1 = l1.item()
-            if(epoch % 1000 == 0 or epoch == 19999):
-                print('epoch: ', epoch)
-                print('loss: ', train_loss)
-                print('test rmse: ', test_rmse)
-                print('test l1: ', test_l1)
 
+            if(epoch % 1000 == 0 or epoch == args.epochs - 1):
+                print('\nepoch: ', epoch)
+                print('time:  ', t1)
+                print('loss:  ', train_loss)
+                print('test rmse: ', test_rmse)
+                print('test l1:   ', test_l1)
+
+            times.append(t1)
             Train_loss.append(train_loss)
             Test_rmse.append(test_rmse)
             Test_l1.append(test_l1)

@@ -1,5 +1,4 @@
 import pickle
-from numpy.core.numeric import NaN
 import pandas as pd
 import os.path as osp
 import inspect
@@ -151,7 +150,7 @@ def cluster_features(data,dataset):
         n = 0
         for index,j in enumerate(fea_i):
             if(np.isnan(j)):
-                data[i][index] = NaN
+                data[i][index] = np.nan
             else:
                 data[i][index] = k_labels[n]
                 n = n + 1    

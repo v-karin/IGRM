@@ -4,7 +4,6 @@ import os
 import os.path as osp
 
 import numpy as np
-from sympy import arg
 import torch
 
 from training.gnn_mdi import train_gnn_mdi
