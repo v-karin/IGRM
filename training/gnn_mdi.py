@@ -4,11 +4,11 @@ import torch
 import torch.nn.functional as F
 import pickle
 
-from models.gnn_model import get_gnn
-from models.prediction_model import MLPNet
-from utils.plot_utils import plot_curve, plot_sample
-from utils.utils import build_optimizer, get_known_mask, mask_edge
-from training.gae import *
+from ..models.gnn_model import get_gnn
+from ..models.prediction_model import MLPNet
+from ..utils.plot_utils import plot_curve, plot_sample
+from ..utils.utils import build_optimizer, get_known_mask, mask_edge
+from ..training.gae import *
 
 def train_gnn_mdi(data, args, log_path, device=torch.device('cpu')):
     gae_net = VGAE(64,128,32,F.relu,True).to(device)

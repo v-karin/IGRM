@@ -11,13 +11,13 @@ import numpy as np
 import pdb
 import math
 
-from utils.utils import get_known_mask, mask_edge
+from ..utils.utils import get_known_mask, mask_edge
 from pyspark import SparkConf
 from pyspark.sql import SparkSession
 from pyspark.ml.fpm import FPGrowth
 from sklearn.cluster import KMeans
 from sklearn.metrics import davies_bouldin_score
-from uci.adj_matrix import *
+from ..uci.adj_matrix import *
 # from training.GAugO_method import *
 from sklearn.metrics.pairwise import cosine_similarity
 from .simulate import simulate_nan

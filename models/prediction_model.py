@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
-from utils.utils import get_activation
+from ..utils.utils import get_activation
 
 class MLPNet(torch.nn.Module):
     def __init__(self, 

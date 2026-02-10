@@ -8,7 +8,7 @@ from torch.nn.init import xavier_uniform_, zeros_
 
 import torch.nn as nn
 import torch.nn.functional as F
-from utils.utils import get_activation
+from ..utils.utils import get_activation
 
 class PGraphSage(MessagePassing):
     """Non-minibatch version of GraphSage."""

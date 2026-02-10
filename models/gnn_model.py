@@ -5,10 +5,10 @@ import torch.nn.functional as F
 
 import torch_geometric.nn as pyg_nn
 import torch_geometric.utils as pyg_utils
-from models.egcn import EGCNConv
-from models.egsage import EGraphSage
-from utils.utils import get_activation
-from models.psage import PGraphSage
+from ..models.egcn import EGCNConv
+from ..models.egsage import EGraphSage
+from ..utils.utils import get_activation
+from ..models.psage import PGraphSage
 
 def get_gnn(data, args):
     model_types = args.model_types.split('_')
